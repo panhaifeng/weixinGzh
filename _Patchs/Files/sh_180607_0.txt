@@ -1,0 +1,15 @@
+CREATE TABLE `jichu_client_contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cid` int(11) NOT NULL COMMENT '客户主表id',
+  `contact_name` varchar(20) NOT NULL COMMENT '联系人名',
+  `telephone` varchar(20) NOT NULL COMMENT '联系人电话',
+  `contact_memo` varchar(20) NOT NULL COMMENT '备注',
+  `email` varchar(100) NOT NULL COMMENT '邮箱',
+  `position` varchar(40) NOT NULL COMMENT '职位',
+  `birthday` int(10) NOT NULL COMMENT '生日',
+  `card_id` varchar(30) NOT NULL COMMENT '身份证号码',
+  `TelAddress` varchar(200) DEFAULT NULL COMMENT '地址',
+  PRIMARY KEY (`id`),
+  KEY `cid` (`cid`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='客户联系人表';
+

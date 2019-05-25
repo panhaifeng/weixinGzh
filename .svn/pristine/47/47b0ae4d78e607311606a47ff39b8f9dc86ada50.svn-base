@@ -1,0 +1,3 @@
+ALTER TABLE `shengchan_waixie2product` ADD `ganghao` VARCHAR( 20 ) NOT NULL COMMENT '缸号' AFTER `money`; 
+ALTER TABLE `cangku_common_ruku` ADD `diaoboId` INT( 10 ) NOT NULL COMMENT '调拨Id' AFTER `rukuDate`; 
+ALTER TABLE `cangku_common_chuku` ADD `isState` TINYINT( 1 ) NOT NULL COMMENT '判断是否为调拨，调拨为2' AFTER `creater`; 

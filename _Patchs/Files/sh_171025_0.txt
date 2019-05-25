@@ -1,0 +1,8 @@
+CREATE TABLE `baojia_gongxu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL COMMENT '工序名称',
+  `price` decimal(12,1) NOT NULL COMMENT '单价',
+  `letters` varchar(20) NOT NULL COMMENT '首字母',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+

@@ -1,0 +1,2 @@
+ALTER TABLE `chengpin_madan_son`
+CHANGE COLUMN `madanId` `cprk2pro`  int(10) NOT NULL COMMENT '入库明细表id' AFTER `id`;

@@ -1,0 +1,2 @@
+ALTER TABLE `chengpin_cprk2product`
+ADD COLUMN `memo`  varchar(100) NOT NULL COMMENT '备注' AFTER `dajuanKind`;

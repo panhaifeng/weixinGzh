@@ -1,0 +1,4 @@
+ALTER TABLE `yuanliao_cgrk`
+ADD COLUMN `kuwei`  varchar(20) NOT NULL COMMENT '库位' AFTER `kind`;
+ALTER TABLE `yuanliao_llck`
+ADD COLUMN `kuwei`  varchar(10) NOT NULL COMMENT '库位' AFTER `kind`;

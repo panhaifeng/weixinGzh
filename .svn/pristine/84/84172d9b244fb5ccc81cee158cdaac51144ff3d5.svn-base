@@ -1,0 +1,3 @@
+ALTER TABLE `yuanliao_cgrk2product`
+DROP COLUMN `kuweiId`,
+MODIFY COLUMN `type`  int(10) NOT NULL COMMENT '原料类型' AFTER `return4id`;

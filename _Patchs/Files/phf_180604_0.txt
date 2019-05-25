@@ -1,0 +1,2 @@
+ALTER TABLE `jichu_product`
+ADD COLUMN `editDate`  timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改价格时间' AFTER `downNeedle`;

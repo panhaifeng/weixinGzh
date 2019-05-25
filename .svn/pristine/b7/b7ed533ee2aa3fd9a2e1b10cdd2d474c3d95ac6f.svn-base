@@ -1,0 +1,7 @@
+CREATE TABLE `jichu_gongxu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT '名称',
+  `gongxuCode` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT '工序编码：缩写',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='工序表';
+

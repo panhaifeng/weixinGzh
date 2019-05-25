@@ -1,0 +1,13 @@
+ALTER TABLE `yuanliao_cgrk`
+DROP COLUMN `kuwei`,
+DROP COLUMN `type`,
+DROP COLUMN `yuanliaoId`,
+DROP COLUMN `pihao`,
+DROP COLUMN `cnt`,
+DROP COLUMN `danjia`,
+DROP COLUMN `money`,
+DROP COLUMN `memo`,
+DROP COLUMN `return4id`,
+MODIFY COLUMN `rukuCode`  varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '入库单号' AFTER `kind`,
+MODIFY COLUMN `rukuDate`  date NOT NULL COMMENT '入库日期' AFTER `supplierId`,
+MODIFY COLUMN `isGuozhang`  int(1) NOT NULL DEFAULT 0 COMMENT '是否过账:0是1否' AFTER `rukuDate`;

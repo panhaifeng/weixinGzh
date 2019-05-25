@@ -1,0 +1,2 @@
+ALTER TABLE `jichu_product`
+ADD COLUMN `ratio`  decimal(20,2) NULL COMMENT '系数' AFTER `price`;

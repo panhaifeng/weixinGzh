@@ -1,0 +1,4 @@
+ALTER TABLE `chengpin_kucun`
+ADD COLUMN `productId`  int(11) NOT NULL COMMENT '产品id' AFTER `ord2proId`,
+ADD COLUMN `rukuId`  int(11) NOT NULL COMMENT '入库id' AFTER `productId`,
+ADD COLUMN `chukuId`  int(11) NOT NULL COMMENT '出库id' AFTER `rukuId`;

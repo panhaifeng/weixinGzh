@@ -1,0 +1,3 @@
+ALTER TABLE `cangku_common_chuku2product`
+MODIFY COLUMN `cnt`  decimal(15,2) NOT NULL COMMENT '折合公斤数' AFTER `ord2proId`,
+CHANGE COLUMN `cntZhehe` `cntOrg`  decimal(15,2) NOT NULL COMMENT '折合前的数据' AFTER `cntM`;

@@ -1,0 +1,13 @@
+ALTER TABLE `jichu_yuanliao`
+MODIFY COLUMN `zhonglei`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '纱支成分' AFTER `zhujiCode`;
+ALTER TABLE `jichu_yuanliao`
+MODIFY COLUMN `kind`  smallint(6) NOT NULL COMMENT '坯纱或者色纱' AFTER `id`,
+MODIFY COLUMN `proCode`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '产品编码' AFTER `kind`,
+MODIFY COLUMN `zhujiCode`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '助记码' AFTER `proCode`,
+MODIFY COLUMN `zhonglei`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '纱支成分' AFTER `zhujiCode`,
+MODIFY COLUMN `guige`  varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '规格' AFTER `proName`,
+MODIFY COLUMN `color`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '颜色' AFTER `guige`,
+MODIFY COLUMN `unit`  char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '单位' AFTER `color`,
+MODIFY COLUMN `memo`  varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '备注' AFTER `unit`;
+ALTER TABLE `jichu_yuanliao`
+MODIFY COLUMN `kind`  varchar(10) NOT NULL COMMENT '坯纱或者色纱' AFTER `id`;

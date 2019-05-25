@@ -1,0 +1,2 @@
+ALTER TABLE `jichu_zhiji`
+ADD COLUMN `memo`  varchar(100) CHARACTER SET utf8 NOT NULL COMMENT '备注' AFTER `chejianId`;

@@ -1,0 +1,6 @@
+CREATE TABLE `trade_order_shenhe` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ord2proId` int(11) NOT NULL COMMENT '订单明细id',
+  `serialStr` text NOT NULL COMMENT '序列化对象',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='订单审核表';

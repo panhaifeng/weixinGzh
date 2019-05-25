@@ -1,0 +1,17 @@
+ALTER TABLE `chengpin_cprk`
+ADD COLUMN `kind`  varchar(10) NOT NULL COMMENT '发生类别' AFTER `id`;
+ALTER TABLE `chengpin_cpck`
+ADD COLUMN `kind`  varchar(10) NOT NULL COMMENT '发生类别' AFTER `id`;
+CREATE TABLE `chengpin_kucun` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dateFasheng` date NOT NULL COMMENT '发生日期',
+  `orderId` int(11) NOT NULL COMMENT '生产订单号',
+  `ord2proId` int(11) NOT NULL COMMENT '订单明细表id',
+  `duanFasheng` int(5) NOT NULL COMMENT '段数',
+  `cntFasheng` decimal(10,1) NOT NULL COMMENT '原始数量',
+  `unitFasheng` varchar(10) NOT NULL COMMENT '发生单位',
+  `cntKgFasheng` decimal(15,1) NOT NULL COMMENT '发生公斤数,针织产品一般以公斤数为库存核算单位',
+  `danjiaFasheng` decimal(10,2) NOT NULL COMMENT '单价',
+  `moneyFasheng` decimal(15,2) NOT NULL COMMENT '发生金额',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='成品库存表';

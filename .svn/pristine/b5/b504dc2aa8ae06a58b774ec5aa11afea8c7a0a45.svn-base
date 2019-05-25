@@ -1,0 +1,9 @@
+ALTER TABLE `chengpin_cprk`
+DROP COLUMN `ord2proId`,
+DROP COLUMN `cntDuan`,
+DROP COLUMN `cnt`,
+DROP COLUMN `unit`,
+DROP COLUMN `danjia`,
+DROP COLUMN `money`,
+DROP COLUMN `cntKg`,
+MODIFY COLUMN `cprkDate`  date NOT NULL COMMENT '入库时间' AFTER `orderId`;

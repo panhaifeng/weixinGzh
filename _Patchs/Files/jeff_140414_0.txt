@@ -1,0 +1,4 @@
+ALTER TABLE `yuanliao_cgrk`
+MODIFY COLUMN `kind`  varchar(10) NOT NULL COMMENT '入库类型文字说明即可' AFTER `id`;
+ALTER TABLE `yuanliao_llck`
+MODIFY COLUMN `kind`  varchar(10) NOT NULL COMMENT '入库类型，文字说明即可' AFTER `id`;

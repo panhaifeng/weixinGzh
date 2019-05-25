@@ -1,0 +1,4 @@
+ALTER TABLE `trade_order_shenhe`
+ADD INDEX `id` (`id`) ,
+ADD INDEX `ord2proId` (`ord2proId`) ,
+ADD INDEX `isCheck` (`isCheck`) ;

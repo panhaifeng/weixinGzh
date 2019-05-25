@@ -1,0 +1,13 @@
+CREATE TABLE `chengpin_cprk2product` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `rukuId` int(10) NOT NULL COMMENT '入库主表id',
+  `cntDuan` int(4) NOT NULL COMMENT '段数',
+  `cnt` decimal(10,1) NOT NULL COMMENT '原始数量',
+  `unit` varchar(10) NOT NULL COMMENT '计量单位',
+  `danjia` decimal(10,2) NOT NULL COMMENT '单价',
+  `money` decimal(15,2) NOT NULL COMMENT '金额',
+  `cntKg` decimal(10,1) NOT NULL COMMENT '折合公斤数',
+  `ord2proId` int(10) NOT NULL COMMENT '产品编号',
+  `dajuanKind` smallint(1) NOT NULL COMMENT '0单卷单匹1打包',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='入库明细表'

@@ -1,0 +1,3 @@
+ALTER TABLE `shengchan_chanliang`
+ADD COLUMN `productId`  int NOT NULL COMMENT '产品id' AFTER `ord2proId`,
+ADD INDEX `productId` (`productId`) ;

@@ -1,0 +1,2 @@
+ALTER TABLE `yuanliao_llck`
+ADD COLUMN `orderId`  int(10) NOT NULL COMMENT '订单id' AFTER `kind`;

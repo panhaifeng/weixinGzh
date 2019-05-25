@@ -1,0 +1,2 @@
+ALTER TABLE `cangku_common_ruku2product`
+MODIFY COLUMN `danjia`  decimal(15,2) NOT NULL COMMENT '单价' AFTER `cntM`;

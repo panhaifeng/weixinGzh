@@ -1,0 +1,3 @@
+ALTER TABLE `shengchan_waixie2product`
+ADD COLUMN `danjia`  decimal(15,1) NOT NULL COMMENT '单价' AFTER `strSerial`,
+ADD COLUMN `money`  decimal(15,1) NOT NULL COMMENT '金额' AFTER `danjia`;

@@ -1,0 +1,13 @@
+﻿-- 2014-05-08 by lei --
+ALTER TABLE `trade_order2product`
+ADD COLUMN `color`  varchar(20) NOT NULL COMMENT '颜色' AFTER `dateJiaohuo`;
+ALTER TABLE `trade_order2product`
+DROP COLUMN `color`,
+MODIFY COLUMN `unit`  varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '单位(m/y/kg)' AFTER `dateJiaohuo`;
+
+ALTER TABLE `trade_order2product`
+ADD COLUMN `supplierId`  int(10) NOT NULL COMMENT '供应商Id' AFTER `chanpinId`;
+-- 2014-08-29 by zhang --
+ALTER TABLE `shengchan_waixie2product` ADD `ganghao` VARCHAR( 20 ) NOT NULL COMMENT '缸号' AFTER `money`; 
+
+

@@ -1,0 +1,7 @@
+ALTER TABLE `yuanliao_kucun`
+MODIFY COLUMN `pihao`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '批号' AFTER `type`,
+MODIFY COLUMN `supplierId`  int(11) NOT NULL COMMENT '供应商id' AFTER `pihao`,
+CHANGE COLUMN `yuanliaoId` `productId`  int(11) NOT NULL COMMENT '原料id' AFTER `supplierId`,
+MODIFY COLUMN `cntFasheng`  decimal(15,2) NOT NULL COMMENT '发生数量,入库为+，出库为-' AFTER `productId`;
+ALTER TABLE `yuanliao_cgrk`
+ADD COLUMN `kuwei`  varchar(10) NOT NULL COMMENT '库位，一般一笔记录只会有一个库位' AFTER `kind`;

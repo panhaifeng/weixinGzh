@@ -1,0 +1,2 @@
+ALTER TABLE `chengpin_cpck2product`
+ADD COLUMN `productId`  int(10) NOT NULL COMMENT '产品id' AFTER `chukuId`;

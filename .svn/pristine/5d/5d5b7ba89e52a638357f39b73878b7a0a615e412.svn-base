@@ -1,0 +1,9 @@
+ALTER TABLE `jichu_product`
+ADD COLUMN `kind`  varchar(10) NOT NULL COMMENT '坯纱，色纱，针织，其他' AFTER `id`;
+ALTER TABLE `jichu_product`
+ADD INDEX `kind` (`kind`) ;
+ALTER TABLE `jichu_product`
+ADD COLUMN `zhonglei`  varchar(10) NOT NULL AFTER `kind`,
+ADD INDEX `zhonglei` (`zhonglei`) ;
+ALTER TABLE `jichu_product`
+CHANGE COLUMN `pinming` `proName`  varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '品名' AFTER `pinzhong`;

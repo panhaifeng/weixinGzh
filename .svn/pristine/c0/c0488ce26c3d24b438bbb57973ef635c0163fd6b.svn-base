@@ -1,0 +1,10 @@
+ALTER TABLE `yuanliao_llck`
+DROP COLUMN `type`,
+DROP COLUMN `yuanliaoId`,
+DROP COLUMN `pihao`,
+DROP COLUMN `cnt`,
+DROP COLUMN `danjia`,
+DROP COLUMN `money`,
+MODIFY COLUMN `yuanyin`  varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '出库原因' AFTER `kuwei`,
+MODIFY COLUMN `chukuCode`  varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '出库单号' AFTER `supplierId`,
+MODIFY COLUMN `memo`  varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '备注' AFTER `chukuCode`;

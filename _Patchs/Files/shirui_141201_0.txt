@@ -1,0 +1,38 @@
+﻿CREATE TABLE `zhanhui_trader` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `employCode` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '员工编码',
+  `employName` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '员工名称',
+  `sex` smallint(1) NOT NULL DEFAULT '0' COMMENT '性别',
+  `mobile` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '手机',
+  `tel` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '手机',
+  `email` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '电邮',
+  `fax` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '传真',
+  `address` varchar(40) COLLATE utf8_bin NOT NULL COMMENT '地址',
+  `dateEnter` datetime DEFAULT NULL COMMENT '入厂时间',
+  `dateLeave` datetime DEFAULT NULL COMMENT '离厂时间',
+  `userId` int(11) NOT NULL COMMENT '关联用户',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `zhanhui_card` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `prefix` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '路径前缀(uploads下的目录名)',
+  `picName` varchar(100) COLLATE utf8_bin NOT NULL,
+  `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `name` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '客户姓名',
+  `tel` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '电话',
+  `compName` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '公司名称',
+  `addr` varchar(150) COLLATE utf8_bin NOT NULL COMMENT '地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='客户名片地址';
+
+
+CREATE TABLE `zhanhui_product2card` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `proCode` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '产品编码',
+  `productId` int(11) NOT NULL,
+  `cardId` int(11) NOT NULL,
+  `traderId` int(11) NOT NULL COMMENT '业务员id',
+  `memo` varchar(40) COLLATE utf8_bin NOT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='产品与客户中间表';

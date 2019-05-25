@@ -1,0 +1,5 @@
+ALTER TABLE `caiwu_yf_guozhang`
+MODIFY COLUMN `unit`  char(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '单位' AFTER `cnt`,
+CHANGE COLUMN `kuweiId` `kuwei`  varchar(20) NOT NULL COMMENT '库位' AFTER `productId`;
+ALTER TABLE `caiwu_yf_guozhang`
+ADD INDEX `ruku2proId` (`ruku2ProId`) ;

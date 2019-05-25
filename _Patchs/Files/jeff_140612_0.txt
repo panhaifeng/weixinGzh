@@ -1,0 +1,13 @@
+ALTER TABLE `cangku_common_ruku2product`
+ADD COLUMN `ord2proId`  int NOT NULL COMMENT '订单明细id(沃丰以订单作为生产计划)' AFTER `pihao`;
+ALTER TABLE `cangku_common_ruku2product`
+ADD INDEX `ord2proId` (`ord2proId`) ;
+ALTER TABLE `cangku_common_ruku`
+ADD COLUMN `orderId`  int NOT NULL COMMENT '订单id,沃丰根据订单入库' AFTER `supplierId`,
+ADD INDEX `orderId` (`orderId`) ;
+ALTER TABLE `cangku_common_ruku2product`
+ADD COLUMN `dengji`  varchar(10) NOT NULL COMMENT '等级(一等品，二等品等),沃丰个性化' AFTER `plan2proId`,
+ADD INDEX `dengji` (`dengji`) ;
+ALTER TABLE `cangku_common_ruku2product`
+ADD COLUMN `cntJian`  int(5) NOT NULL COMMENT '件数(面料上一般都需要件数)' AFTER `cnt`,
+ADD COLUMN `cntM`  decimal(15,2) NOT NULL COMMENT '米数(针织面料的主单位为kg,辅单位为M)' AFTER `cntJian`;

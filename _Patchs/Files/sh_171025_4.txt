@@ -1,0 +1,2 @@
+ALTER TABLE `jichu_product`
+ADD COLUMN `baojia`  decimal(20,2) NULL COMMENT '报价' AFTER `ratio`;

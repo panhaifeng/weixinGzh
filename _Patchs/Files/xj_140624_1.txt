@@ -1,0 +1,2 @@
+ALTER TABLE `trade_order_shenhe`
+MODIFY COLUMN `isCheck`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否审核 1代表审核' AFTER `serialStr`;

@@ -1,0 +1,2 @@
+ALTER TABLE `shengchan_chanliang`
+ADD COLUMN `ban`  tinyint(1) NOT NULL COMMENT '班别，1:白班，0夜班' AFTER `ganghao`;

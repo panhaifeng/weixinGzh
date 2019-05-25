@@ -1,0 +1,1 @@
+<input name="proName" type="text" id="proName" value="{$arr_condition.proName}" size="10" emptyText='产品名称' placeholder='产品名称'>

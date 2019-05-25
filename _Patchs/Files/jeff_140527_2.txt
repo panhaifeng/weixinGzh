@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS jichu_yuanliao;
+DROP TABLE IF EXISTS jichu_yuanliao_kind;

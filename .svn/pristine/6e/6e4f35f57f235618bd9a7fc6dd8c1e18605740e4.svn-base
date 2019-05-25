@@ -1,0 +1,2 @@
+ALTER TABLE `yuanliao_llck`
+ADD COLUMN `depId`  int(10) NOT NULL COMMENT '部门id' AFTER `chukuDate`;

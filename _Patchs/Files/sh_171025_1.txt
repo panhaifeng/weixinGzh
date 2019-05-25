@@ -1,0 +1,14 @@
+CREATE TABLE `jichu_product_chengfen` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `proId` int(10) NOT NULL COMMENT '主表id,外键字段',
+  `productId` int(10) NOT NULL COMMENT '坯纱/色纱对应的id',
+  `viewPer` decimal(10,2) NOT NULL COMMENT '纱支比例:不用于计算，只查看',
+  `chengfenPer` decimal(10,1) NOT NULL COMMENT '百分比',
+  `memoView` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '备注描述',
+  `sort` int(10) NOT NULL COMMENT '排序',
+  `xianchang` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT '线长',
+  PRIMARY KEY (`id`),
+  KEY `proId` (`proId`),
+  KEY `productId` (`productId`)
+) ENGINE=MyISAM AUTO_INCREMENT=5442 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='成分比列表';
+

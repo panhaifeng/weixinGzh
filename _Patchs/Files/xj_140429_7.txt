@@ -1,0 +1,2 @@
+ALTER TABLE `chengpin_cprk2product`
+MODIFY COLUMN `ord2proId`  int(10) NOT NULL COMMENT '订单明细表id' AFTER `cntKg`;

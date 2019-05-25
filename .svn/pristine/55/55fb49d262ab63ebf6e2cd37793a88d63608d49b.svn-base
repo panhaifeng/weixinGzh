@@ -1,0 +1,2 @@
+ALTER TABLE `yuanliao_cgrk`
+ADD COLUMN `memo`  varchar(200) NOT NULL COMMENT '备注' AFTER `dt`;

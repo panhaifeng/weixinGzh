@@ -1,0 +1,2 @@
+ALTER TABLE `jichu_product` ADD COLUMN `chiCun` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '尺寸';
+ALTER TABLE `jichu_product` ADD COLUMN `zhenXing` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '针型';

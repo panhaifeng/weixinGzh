@@ -1,0 +1,2 @@
+ALTER TABLE `trade_order2product`
+ADD COLUMN `memo2`  varchar(100) NOT NULL COMMENT '跟单备注' AFTER `memo`;

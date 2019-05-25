@@ -1,0 +1,11 @@
+ UPDATE cangku_common_kucun SET dengji='好布' WHERE dengji='一等品';
+ UPDATE cangku_common_kucun SET dengji='疵布' WHERE dengji='二等品'; 
+ UPDATE cangku_common_kucun SET dengji='疵点多' WHERE dengji='等外品';
+
+ UPDATE cangku_common_chuku2product SET dengji='好布' WHERE dengji='一等品';
+ UPDATE cangku_common_chuku2product SET dengji='疵布' WHERE dengji='二等品'; 
+ UPDATE cangku_common_chuku2product SET dengji='疵点多' WHERE dengji='等外品';
+
+ UPDATE cangku_common_ruku2product SET dengji='好布' WHERE dengji='一等品';
+ UPDATE cangku_common_ruku2product SET dengji='疵布' WHERE dengji='二等品'; 
+ UPDATE cangku_common_ruku2product SET dengji='疵点多' WHERE dengji='等外品';

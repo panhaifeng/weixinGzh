@@ -1,0 +1,12 @@
+ALTER TABLE `trade_order2product` ADD COLUMN `productId`  int(10) NOT NULL COMMENT '产品Id' AFTER `orderId`;
+ALTER TABLE `trade_order2product` MODIFY COLUMN `supplierId`  int(10) NOT NULL COMMENT '供应商Id' AFTER `productId`;
+ALTER TABLE `trade_order2product` DROP COLUMN `chanpinId`;
+DROP INDEX `chanpinId` ON `trade_order2product`;
+CREATE INDEX `chanpinId` USING BTREE ON `trade_order2product`(`productId`) ;
+DROP TABLE `jifen_comp`;
+DROP TABLE `jifen_comp_rank`;
+DROP TABLE `jifen_upbyuser_log`;
+DROP TABLE `jifen_up_error`;
+DROP TABLE `jifen_up_log`;
+DROP TABLE `jifen_user`;
+DROP TABLE `jifen_user_rank`;

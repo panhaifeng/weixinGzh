@@ -1,0 +1,3 @@
+ALTER TABLE `trade_order`
+ADD COLUMN `isExport`  varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 
+'是否导出，导出为1' AFTER `memo`;

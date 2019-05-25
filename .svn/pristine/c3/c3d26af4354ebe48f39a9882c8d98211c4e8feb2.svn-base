@@ -1,0 +1,12 @@
+ALTER TABLE `chengpin_cprk`
+ADD COLUMN `danjia`  decimal(10,2) NOT NULL COMMENT '单价' AFTER `unit`,
+ADD COLUMN `money`  decimal(15,2) NOT NULL COMMENT '金额' AFTER `danjia`,
+ADD COLUMN `cntKg`  decimal(10,1) NOT NULL COMMENT '折合公斤数' AFTER `money`;
+ALTER TABLE `chengpin_cpck`
+ADD COLUMN `danjia`  decimal(10,2) NOT NULL COMMENT '单价' AFTER `unit`,
+ADD COLUMN `money`  decimal(15,2) NOT NULL COMMENT '金额' AFTER `danjia`,
+ADD COLUMN `cntKg`  decimal(15,1) NOT NULL COMMENT '折合公斤数' AFTER `money`;
+ALTER TABLE `chengpin_cpck`
+ADD COLUMN `danjia`  decimal(10,2) NOT NULL COMMENT '单价' AFTER `unit`,
+ADD COLUMN `money`  decimal(15,2) NOT NULL COMMENT '金额' AFTER `danjia`,
+ADD COLUMN `cntKg`  decimal(15,1) NOT NULL COMMENT '折合公斤数' AFTER `money`;

@@ -1,0 +1,1 @@
+<input name="chengfen" type="text" id="chengfen" value="{$arr_condition.chengfen}" size="10" emptyText='成分' placeholder='成分'>

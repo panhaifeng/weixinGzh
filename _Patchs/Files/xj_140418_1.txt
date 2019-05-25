@@ -1,0 +1,2 @@
+ALTER TABLE `trade_order`
+MODIFY COLUMN `checkDate`  timestamp NOT NULL DEFAULT '0000-00-00' ON UPDATE CURRENT_TIMESTAMP COMMENT '审核日期' AFTER `checkPeo`;

@@ -1,0 +1,3 @@
+ALTER TABLE `trade_order`
+DROP COLUMN `finalDate`,
+MODIFY COLUMN `traderId`  int(11) NOT NULL COMMENT '业务员ID' AFTER `orderDate`;

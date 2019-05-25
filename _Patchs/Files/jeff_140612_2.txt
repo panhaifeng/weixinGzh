@@ -1,0 +1,3 @@
+ALTER TABLE `cangku_common_chuku2product`
+ADD COLUMN `cntJian`  int(5) NOT NULL COMMENT '件数(面料上一般都需要件数)' AFTER `cnt`,
+ADD COLUMN `cntM`  decimal(15,2) NOT NULL COMMENT '米数(针织面料的主单位为kg,辅单位为M)' AFTER `cntJian`;

@@ -1,0 +1,14 @@
+CREATE TABLE `yuanliao_cgrk2product` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `rukuId` int(10) NOT NULL COMMENT '入库Id',
+  `productId` int(10) NOT NULL COMMENT '原料产品id',
+  `pihao` varchar(50) NOT NULL COMMENT '批号',
+  `cnt` decimal(15,2) NOT NULL COMMENT '数量',
+  `danjia` decimal(15,1) NOT NULL COMMENT '单价',
+  `money` decimal(15,2) NOT NULL COMMENT '金额',
+  `memo` varchar(100) NOT NULL COMMENT '注释',
+  `return4id` int(11) NOT NULL COMMENT '退库时相关入库id',
+  `kuweiId` int(10) NOT NULL COMMENT '库位id',
+  `type` int(10) NOT NULL COMMENT '原料类型',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1

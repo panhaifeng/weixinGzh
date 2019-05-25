@@ -1,0 +1,2 @@
+ALTER TABLE `yuanliao_llck`
+MODIFY COLUMN `kind`  varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '出库类型，文字说明即可' AFTER `id`;

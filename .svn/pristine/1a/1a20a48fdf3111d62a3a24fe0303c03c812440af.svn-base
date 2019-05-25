@@ -1,0 +1,1 @@
+<input name="orderCode" type="text" id="orderCode" value="{$arr_condition.orderCode}" size="10" emptyText='生产编号' placeholder='生产编号' />

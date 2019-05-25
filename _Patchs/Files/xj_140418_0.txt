@@ -1,0 +1,3 @@
+ALTER TABLE `trade_order`
+ADD COLUMN `finalDate`  date NOT NULL COMMENT '最终交期' AFTER `orderDate`,
+ADD COLUMN `xsType`  varchar(20) NOT NULL AFTER `clientOrder`;

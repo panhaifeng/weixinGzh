@@ -1,0 +1,13 @@
+CREATE TABLE `chengpin_cpck2product` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '出库主表ID',
+  `chukuId` int(10) NOT NULL,
+  `ord2proId` int(10) NOT NULL COMMENT '产品编号',
+  `cntDuan` int(10) NOT NULL COMMENT '出库件数',
+  `cnt` decimal(15,2) NOT NULL COMMENT '原始数量',
+  `unit` varchar(10) NOT NULL COMMENT '原始单位',
+  `danjia` decimal(10,2) NOT NULL COMMENT '单价',
+  `money` decimal(15,2) NOT NULL COMMENT '金额',
+  `cntKg` decimal(15,1) NOT NULL COMMENT '折合公斤数',
+  `memo` varchar(100) NOT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='成品出库明细表'

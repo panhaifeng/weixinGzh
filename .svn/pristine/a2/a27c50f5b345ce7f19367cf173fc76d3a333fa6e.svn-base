@@ -1,0 +1,16 @@
+CREATE TABLE `yuanliao_kucun` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dateFasheng` date DEFAULT NULL COMMENT '发生日期',
+  `rukuId` int(11) NOT NULL COMMENT '入库表id',
+  `chukuId` int(11) NOT NULL COMMENT '出库表id',
+  `kind` varchar(10) NOT NULL COMMENT '出入库类型',
+  `kuwei` varchar(10) NOT NULL COMMENT '库位',
+  `type` int(1) NOT NULL COMMENT '原料类型',
+  `supplierId` int(11) NOT NULL COMMENT '供应商id',
+  `yuanliaoId` int(11) NOT NULL COMMENT '原料id',
+  `pihao` varchar(50) NOT NULL COMMENT '批号',
+  `cntFasheng` decimal(15,2) NOT NULL COMMENT '发生数量,入库为+，出库为-',
+  `danjiaFasheng` decimal(15,2) NOT NULL COMMENT '单价',
+  `moneyFasheng` decimal(15,2) NOT NULL COMMENT '金额',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='原料库存表';

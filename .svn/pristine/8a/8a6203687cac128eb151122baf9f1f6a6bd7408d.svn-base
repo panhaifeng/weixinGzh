@@ -1,0 +1,3 @@
+ALTER TABLE `trade_order`
+MODIFY COLUMN `memoTrade`  varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '经营要求' AFTER `orderItem7`,
+MODIFY COLUMN `memoWaigou`  varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '外购备注' AFTER `memoYongjin`;

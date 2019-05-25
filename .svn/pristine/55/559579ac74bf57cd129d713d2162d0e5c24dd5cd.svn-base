@@ -1,0 +1,23 @@
+CREATE TABLE `shengchan_waixie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kind` varchar(20) NOT NULL COMMENT '单据分类',
+  `waixieCode` varchar(20) NOT NULL COMMENT '外协单号',
+  `waixieDate` date NOT NULL COMMENT '外协日期',
+  `jiaohuoDate` date NOT NULL COMMENT '交货日期',
+  `jiagonghuId` int(11) NOT NULL COMMENT '加工户id',
+  `creater` varchar(255) NOT NULL COMMENT '创建人',
+  `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='外协加工单';
+CREATE TABLE `shengchan_waixie2product` (
+  `id` int(11) NOT NULL,
+  `waixieId` int(11) NOT NULL COMMENT '外协id',
+  `ord2proId` int(11) NOT NULL COMMENT '相关订单明细id',
+  `productId` int(11) NOT NULL COMMENT '物料id,可能有可能没有',
+  `proName` varchar(100) NOT NULL COMMENT '品名(有时productId为0,这里需要手工填写)',
+  `guige` varchar(100) NOT NULL COMMENT '规格(有时productId为0,这里需要手工填写)',
+  `cntSend` decimal(15,1) NOT NULL COMMENT '发出数量',
+  `cntHuishou` decimal(15,1) NOT NULL COMMENT '回收数量',
+  `strSerial` text NOT NULL COMMENT '序列化后的属性信息,避免使用过多字段',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
