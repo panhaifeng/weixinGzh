@@ -10,7 +10,7 @@ return array(
         'driver'    => 'mysql',
         'host'      => 'localhost',
         'login'     => 'root',
-        'password'  => 'eqinfo',
+        'password'  => 'phf571358',
         'database'  => 'e7_wofeng'
     )
 );
