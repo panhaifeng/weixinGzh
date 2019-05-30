@@ -384,7 +384,18 @@ class FLEA
         if ($return) { return $filename; }
         return false;
     }
-
+            /**
+     * 获取第三方Org文件夹里的插件
+     * Time：2018/01/12 09:30:16
+     * @author li
+    */
+    function org($className = ''){
+        if(!$className){
+            return false;
+        }else{
+            require_once('Lib/Org/'.$className);
+        }
+    }
     /**
      * 返回指定类的唯一一个实例
      *

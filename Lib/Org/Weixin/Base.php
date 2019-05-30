@@ -5,8 +5,7 @@ class Weixin_Base {
     public function __construct($token) {
         $this->token = $token;
     }
-
-    /**
+            /**
      * weixin验证url
      * Time：2015/12/24 16:56:18
      * @author zhangyan
@@ -15,10 +14,15 @@ class Weixin_Base {
     */
     public function valid(){
         $echoStr = $_GET["echostr"];
-        if($this->checkSignature()){ //调用验证字段
-            echo $echoStr;
-            exit;
+        if($echoStr){
+            if($this->checkSignature()){ //调用验证字段
+                echo $echoStr;
+                exit;
+            }
+        }else{
+                $this->responseMsgNew();
         }
+        
     }
 
     private function checkSignature()
@@ -42,202 +46,229 @@ class Weixin_Base {
             return false;
         }
     }
+        //回复消息
 
-    /**
-     * ps ：接口汇总，统一经过
-     * Time：2015/12/28 09:35:18
-     * @author zhangyan
-     * @param 参数类型
-     * @return 返回值类型
-    */
-    //回复消息
-    public function getResult(){
-        //get post data, May be due to the different environments
-        $postStr = file_get_contents("php://input");//$GLOBALS["HTTP_RAW_POST_DATA"];
+    public function responseMsgNew()
+    {
+        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
         if (!empty($postStr)){
-            libxml_disable_entity_loader(true);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $fromUsername = $postObj->FromUserName;
-            $toUsername = $postObj->ToUserName;
-            $MsgType=$postObj->MsgType;
-            switch($MsgType){
-               case "event":
-                $result = $this->receiveEvent($postObj);
-               break;
-               case "text":
-                $result = $this->receiveText($postObj);
-               break;
+            $RX_TYPE = trim($postObj->MsgType);
+
+            //用户发送的消息类型判断
+            switch ($RX_TYPE)
+            {
+                case "text":    //文本消息
+                    $result = $this->receiveText($postObj);
+                    break;
+                case "image":   //图片消息
+                    $result = $this->receiveImage($postObj);
+                    break;
+
+                case "voice":   //语音消息
+                    $result = $this->receiveVoice($postObj);
+                    break;
+                case "video":   //视频消息
+                    $result = $this->receiveVideo($postObj);
+                    break;
+                case "location"://位置消息
+                    $result = $this->receiveLocation($postObj);
+                    break;
+                case "link":    //链接消息
+                    $result = $this->receiveLink($postObj);
+                    break;
+                default:
+                    $result = "unknow msg type: ".$RX_TYPE;
+                    break;
             }
-            return $result;
+            echo $result;
         }else {
-            echo "没有接收到任何信息！";
+            echo "";
             exit;
         }
     }
 
-    /**
-     * ps ：用户发送消息的时候回复消息
-     * Time：2015/12/18 12:33:11
-     * @author zhangyan
-     * @param 参数类型
-     * @return 返回值类型
-    */
-    function receiveText($postObj){
-        $fromUsername = $postObj->FromUserName; //请求消息的用户
-        $toUsername = $postObj->ToUserName; //"我"的公众号id
-        $keyword = trim($postObj->Content); //消息内容
-        $content = "";
-        //设置关键字
-        if(strstr($keyword, "你好")){
-            $content = "您好，我是Jado绿能侠，很高兴为你服务";
-        }elseif(strstr($keyword, "测试")){
-            $content = "测试";
-        }elseif(strstr($keyword, "绿能侠")){
-            $content = "test.lvnengxia.cn";
+    /*
+     * 接收文本消息
+     */
+    private function receiveText($object)
+    {   if($object->Content=='我是陈斌'){
+           $content = "陈老比你好";
+        }elseif($object->Content=='海哥最帅'){
+           $this->init();
+	    }elseif($object->Content=='海哥再见'){
+           $this->DelInit();
         }else{
-            $content = null;
+           $content = "你发送的是文本，内容为：".$object->Content;
         }
-        //同时返回个人信息
-        $result = '';
-        if($content != ''){
-            $result = $this->transmitText($postObj,$content);
-        }
+        $result = $this->transmitText($object, $content);
         return $result;
     }
 
-    /**
-     * ps ：得到是关注的时候才会输出会员信息
-     * Time：2015/12/18 12:33:22
-     * @author zhangyan
-     * @param 参数类型
-     * @return 返回值类型
-    */
-    function receiveEvent($postObj){
-        $content = "";
-        switch (strtoupper($postObj->Event)){
-            case "SUBSCRIBE":
-                $content = "Jado绿能侠欢迎您";
-                break;
-            case "VIEW":
-                break;
-            case "CLICK":
-                switch ($postObj->EventKey)
-                    {
-                        case "jf_current_balance_1":
-                            //$content = $this->getPoint($postObj->FromUserName);
-                        break;
-                    }
-                break;
-            default:
-                break;
-        }
-
-        $result = '';
-        if($content != ''){
-            $result = $this->transmitText($postObj,$content);
-        }
+    /*
+     * 接收图片消息
+     */
+    private function receiveImage($object)
+    {
+        $content = "你发送的是图片，地址为：".$object->PicUrl;
+        $result = $this->transmitText($object, $content);
         return $result;
     }
 
-    /**
-     * ps ：关注的时候，回复关注信息，返回用户信息
-     * Time：2015/12/18 12:32:27
-     * @author zhangyan
-     * @param 参数类型
-     * @return 返回值类型
-    */
-    function transmitText($postObj,$content,$msgType='text'){
-        $textTpl = "<xml>
-           <ToUserName><![CDATA[%s]]></ToUserName>
-           <FromUserName><![CDATA[%s]]></FromUserName>
-           <CreateTime>%s</CreateTime>
-           <MsgType><![CDATA[%s]]></MsgType>
-           <Content><![CDATA[%s]]></Content>
-           <FuncFlag>0</FuncFlag>
-           </xml>";
-        $resultStr= sprintf($textTpl,$postObj->FromUserName,$postObj->ToUserName,time(),$msgType,$content);
-        return $resultStr;
+    /*
+     * 接收语音消息
+     */
+    private function receiveVoice($object)
+    {
+        $content = "你发送的是语音，媒体ID为：".$object->MediaId;
+        $result = $this->transmitText($object, $content);
+        return $result;
     }
 
+    /*
+     * 接收视频消息
+     */
+    private function receiveVideo($object)
+    {
+        $content = "你发送的是视频，媒体ID为：".$object->MediaId;
+        $result = $this->transmitText($object, $content);
+        return $result;
+    }
+
+    /*
+     * 接收位置消息
+     */
+    private function receiveLocation($object)
+    {
+        $content = "你发送的是位置，纬度为：".$object->Location_X."；经度为：".$object->Location_Y."；缩放级别为：".$object->Scale."；位置为：".$object->Label;
+        $result = $this->transmitText($object, $content);
+        return $result;
+    }
+
+    /*
+     * 接收链接消息
+     */
+    private function receiveLink($object)
+    {
+        $content = "你发送的是链接，标题为：".$object->Title."；内容为：".$object->Description."；链接地址为：".$object->Url;
+        $result = $this->transmitText($object, $content);
+        return $result;
+    }
+
+    /*
+     * 回复文本消息
+     */
+    private function transmitText($object, $content)
+    {
+        $textTpl = "<xml><ToUserName><![CDATA[%s]]></ToUserName>
+<FromUserName><![CDATA[%s]]></FromUserName>
+<CreateTime>%s</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[%s]]></Content></xml>";
+        $result = sprintf($textTpl, $object->FromUserName, $object->ToUserName, time(), $content);
+        return $result;
+    }
     /**
+     * weixin验证url
+     * Time：2015/12/24 16:56:18
+     *by  pan
+     */
+    public function init(){
+        //判断操作
+        // if($_GET['huanledui_wechat'] != 'huanledui_wechat'){
+        //     echo "你好，你访问的地址无法正常运行！";exit;
+        // }
+        
+
+        // 定义菜单信息
+        $menu = [
+            'button'=>[
+               [
+                    'type'=>'view',
+                    'name'=>'海哥',
+                    'url'=>"http://changzhouhaige.cn/haige.html",
+                ],
+           
+                [
+                     'type'=>'view',
+                     'name'=>'百度',
+                     'url'=>"http://www.baidu.com",
+                ]
+            ]
+        ];
+
+        $access_token = $this->get_access_token();
+
+        $url_target = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access_token;
+        // echo json_encode($menu,JSON_UNESCAPED_UNICODE);exit;
+        $result = $this->http_request($url_target ,json_encode($menu,JSON_UNESCAPED_UNICODE),10,false);
+
+        echo $result;
+    }
+
+        /**
      * ps ：获取access_token
      * Time：2015/12/18 12:32:44
      * @author zhangyan
      * @param 参数类型
      * @return 返回值类型
     */
-    function get_access_token($appId,$appSecret){
+    function get_access_token(){
+        $this->appID="wx0b8dcc4597275531";
+        $this->appsecret="2d82c01531b3263b585a1023b4d5c92b";
+        // session_start();
 
-        $_file_session = 'weixin_eqinfo.txt';
-        $_txt_session = unserialize(file_get_contents($_file_session));
+        // $_file_session = 'weixin_eqinfo.txt';
+        // $_txt_session = unserialize(file_get_contents($_file_session));
 
         // dump($_txt_session);exit;
-        if($_txt_session['wx_access_token'] && time() <= $_txt_session['wx_access_token_time']) {
-            return $_txt_session['wx_access_token'];
+        if($_SESSION['wxUser']['wx_access_token'] && time() <= $_SESSION['wxUser']['wx_access_token_time']) {
+            return $_SESSION['wxUser']['wx_access_token'];
         } else {
             //获取access_token
-            $url_get='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$appId.'&secret='.$appSecret;
+            $url_get='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$this->appID.'&secret='.$this->appsecret;
 
             $access = $this->http_request($url_get);
 
             //放入session
-            $_SESSION['wx_access_token'] = $access['access_token'];
-            $_SESSION['wx_access_token_time'] = time() + $access['expires_in'];
+            $_SESSION['wxUser']['wx_access_token'] = $access['access_token'];
+            $_SESSION['wxUser']['wx_access_token_time'] = time() + $access['expires_in'];
 
-            $_txt_session['wx_access_token'] = $access['access_token'];
-            $_txt_session['wx_access_token_time'] = $_SESSION['wx_access_token_time'];
             //放到缓存中
-            file_put_contents($_file_session, serialize($_txt_session));
+            // file_put_contents($_file_session, serialize(['wx_access_token'=>$_SESSION['wxUser']['wx_access_token'],'wx_access_token_time'=>$_SESSION['wxUser']['wx_access_token_time']]));
 
             // dump($access);exit;
             return $access['access_token'];
         }
     }
 
+    
+     
     /**
-     * 在网页端处理事件需要获取user信息
-     * 网页上需要微信的授权access_token ，该token 和之前的access_token不同
-     * Time：2015/12/31 13:18:06
-     * @author li
-    */
-    function get_access_token_auth($appId,$appSecret,$code=''){
-        $_file_session = 'weixin_eqinfo.txt';
-        $_txt_session = unserialize(file_get_contents($_file_session));
-
-        // session_start();
-        if($_txt_session['wx_access_token_auth'] && time() <= $_txt_session['wx_access_token_auth_time']) {
-            return $_txt_session['wx_access_token_auth'];
-        } else {
-            //获取access_token
-            if($_SESSION['wxweb']['refresh_token']!=''){
-                $url_get='https://api.weixin.qq.com/sns/oauth2/refresh_token?appid='.$appId.'&grant_type=refresh_token&refresh_token='.$_SESSION['wxweb']['refresh_token'];
-            }elseif($code!=''){
-                $url_get='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appId.'&secret='.$appSecret.'&code='.$code.'&grant_type=authorization_code';
-            }else{
-                return false;
-            }
-
-            //获取access_token
-            $access = $this->http_request($url_get);
-
-            //放入session
-            // echo $url_get;
-            // unset($_SESSION['wxweb']);
-            $_SESSION['wxweb']['access_token'] = $access['access_token'];
-            $_SESSION['wxweb']['openId'] = $access['openid'];
-            $_SESSION['wxweb']['refresh_token'] = $access['refresh_token'];
-            $_SESSION['wxweb']['access_token_time'] = time() + $access['expires_in'];
-
-
-            $_txt_session['wx_access_token_auth'] = $access['access_token'];
-            $_txt_session['wx_access_token_auth_time'] = $_SESSION['wxweb']['access_token_time'];
-            //放到缓存中
-            file_put_contents($_file_session, serialize($_txt_session));
-
-            return $access['access_token'];
+     * @Desc:
+     * @author:guomin
+     * @date:
+     * @param $url
+     * @param array $fields
+     * @return string
+     */
+    private function curl($url,$fields=[]){
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);
+        if($fields){
+            curl_setopt($ch,CURLOPT_TIMEOUT,30);
+            curl_setopt($ch,CURLOPT_POST,1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,$fields);
         }
-    }
-
+        if(curl_exec($ch)){
+            $data=curl_multi_getcontent($ch);
+        }
+        curl_close($ch);
+        return $data;
+    } 
     /**
      * 访问
      * Time：2015/12/29 15:24:08
@@ -245,11 +276,11 @@ class Weixin_Base {
      * @param 参数类型
      * @return 返回值类型
     */
-    public function http_request($url ,$data=null ,$timeout=8 ,$decode=true){
+    public function http_request($url ,$data=null ,$timeout=5 ,$decode=true){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout );
+        curl_setopt ( $ch1, CURLOPT_CONNECTTIMEOUT, $timeout );
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
 
@@ -264,23 +295,16 @@ class Weixin_Base {
 
         return $output;
     }
-
-    //生成授权地址并跳转
-    public function get_code($appId, $redirect_uri, $scope='snsapi_base', $response_type='code', $state='STATE'){
-        $api_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
-        $api_url = $api_url.'appid='.$appId.'&redirect_uri='.urlencode($redirect_uri).'&response_type='.$response_type.'&scope='.$scope.'&state='.$state.'#wechat_redirect';
-        // dump($api_url);die;
-        header('Location:'.$api_url);
-        exit;
-    }
-
-    //code换取openId
-    public function code2openid($appID ,$appsecret ,$code){
-        $curl = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appID.'&secret='.$appsecret.'&code='.$code.'&grant_type=authorization_code';
-        $result = $this->http_request($curl);
-        // $result = json_decode($content ,1);
-        // dump($result);exit;
-        return $result['openid'];
-    }
-
+         /**
+     * @Desc:删除菜单
+     * @author:guomin
+     * @date:2017-11-01 23:17
+     */
+    public function DelInit(){
+        $access=$this->get_access_token();
+        $url="https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=".$access;
+        $result=$this->curl($url);
+        //$result = $this->http_request($url,json_encode('',JSON_UNESCAPED_UNICODE),10,false);
+        //print_r($result);
+    }   
 }

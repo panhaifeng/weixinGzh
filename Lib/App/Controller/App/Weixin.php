@@ -4,20 +4,22 @@ class Controller_App_Weixin extends TMIS_ControllerApp {
 
     // /构造函数
     function __construct() {
+        // dump(12312);die;
         //微信配置
         include "Config/config.wx.php";
         $wxconfig = $_WXConfig['Basics'];
         $this->appID= $wxconfig['appID'];
         $this->appsecret= $wxconfig['appsecret'];
         $this->token= $wxconfig['token'];
-
         //插件实例化
         FLEA::org('Weixin/Base.php');
+        //dump(122);die;
         $this->baseWx = new Weixin_Base($this->token);
     }
 
     //验证token
     function actionValid(){
+        // dump(121);die;
         $this->baseWx->valid();
     }
 
