@@ -215,7 +215,7 @@ class Weixin_Base {
     */
     function get_access_token(){
         $this->appID="wxf8218e9a6a3ad736";
-        $this->appsecret="e3c87123fca2308939e0b76a83b7a3fc";
+        $this->appsecret="0a4f7c0ddae33e0bc2c7369345aae61e";
         // session_start();
 
         // $_file_session = 'weixin_eqinfo.txt';
