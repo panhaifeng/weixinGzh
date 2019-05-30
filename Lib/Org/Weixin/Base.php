@@ -204,7 +204,7 @@ class Weixin_Base {
                             'url'=>'?controller=Acm_User2&action=Index',
                         ]
                     ]
-                ],
+                ]
             ]
         ];
 
