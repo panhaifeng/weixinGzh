@@ -201,7 +201,7 @@ class Weixin_Base {
                         [
                             'type'=>'view',
                             'name'=>'微信',
-                            'url'=>'http://changzhouhaige.cn?controller=Acm_User2&action=Index',
+                            'url'=>'http://changzhouhaige.cn/weixinGzh/Index.php?controller=Acm_User2&action=Index',
                         ]
                     ]
                 ]
