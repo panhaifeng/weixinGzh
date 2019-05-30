@@ -4,6 +4,19 @@ class Controller_Acm_User2 extends TMIS_ControllerApp {
      //获取用户微信昵称和头像
      public function actionIndex(){
         FLEA::loadClass('TMIS_Pager');
+        $appID="wx0b8dcc4597275531";
+        $appsecret="2d82c01531b3263b585a1023b4d5c92b";
+        $code = $_GET["code"];
+        $appID=APPID;
+        $token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appID&secret=$appsecret&code=$code&grant_type=authorization_code";
+        $token_info = http_request($token_url);
+
+        //根据openid和access_token查询用户信息 
+        $access_token = $token_info['access_token']; 
+        $openid = $token_info['openid'];
+
+        $userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN"; 
+        $user_info = http_request($userinfo_url);
         //先获取openId
         //基础信息获取
         $openId = $_SESSION['wxweb']['openId'];
