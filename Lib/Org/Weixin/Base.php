@@ -193,7 +193,18 @@ class Weixin_Base {
                      'type'=>'view',
                      'name'=>'百度',
                      'url'=>"http://www.baidu.com",
-                ]
+                ],
+
+                [
+                    'name'=>'帐号管理',
+                    'sub_button'=>[
+                        [
+                            'type'=>'view',
+                            'name'=>'微信',
+                            'url'=>'?controller=Acm_User2&action=Index',
+                        ]
+                    ]
+                ],
             ]
         ];
 

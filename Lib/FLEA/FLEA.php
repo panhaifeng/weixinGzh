@@ -1738,6 +1738,28 @@ function dump($vars, $label = '', $return = false)
 }
 
 /**
+ * @package core
+ * @Desc:程序调试  输出内容到本系统下debug_log.txt文件中
+ * @date:2017-11-06 14:37
+ * @param $vars  输出内容
+ * @param string $label
+ * @param bool $return
+ * @return null
+ */
+function dump2file($vars, $label = '', $return = false)
+{
+    $m_time = microtime();
+    list($t1, $t2) = explode(' ', $m_time);
+    $t1 = $t1*1000000;
+    $t2 = date('Y-m-d H:i:s',$t2);
+    $flag = $t2.':'.$t1;
+    $import_data = print_r($vars,1);
+    $import_data = "================".$flag."================\r\n".$import_data."\r\n";
+    file_put_contents('debug_log.txt', $import_data,FILE_APPEND);
+    return null;
+}
+
+/**
  * 显示应用程序执行路径，通常用于调试
  *
  * @package Core
