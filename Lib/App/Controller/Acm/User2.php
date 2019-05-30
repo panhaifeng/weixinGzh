@@ -2,7 +2,7 @@
 FLEA::loadClass('TMIS_ControllerApp');
 class Controller_Acm_User2 extends TMIS_ControllerApp {
      //获取用户微信昵称和头像
-     public function Index(){
+     public function actionIndex(){
         FLEA::loadClass('TMIS_Pager');
         //先获取openId
         //基础信息获取
