@@ -19,7 +19,6 @@ class Controller_Acm_User2 extends TMIS_ControllerApp {
         $user_info = http_request($userinfo_url);
         //先获取openId
         //基础信息获取
-        $openId = $_SESSION['wxweb']['openId'];
         dump2file($openid);
         //获取微信用户的基础信息
         $info = $this->get_user_detail($openId);
