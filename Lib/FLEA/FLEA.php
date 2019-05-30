@@ -1746,18 +1746,18 @@ function dump($vars, $label = '', $return = false)
  * @param bool $return
  * @return null
  */
-// function dump2file($vars, $label = '', $return = false)
-// {
-//     $m_time = microtime();
-//     list($t1, $t2) = explode(' ', $m_time);
-//     $t1 = $t1*1000000;
-//     $t2 = date('Y-m-d H:i:s',$t2);
-//     $flag = $t2.':'.$t1;
-//     $import_data = print_r($vars,1);
-//     $import_data = "================".$flag."================\r\n".$import_data."\r\n";
-//     file_put_contents('debug_log.txt', $import_data,FILE_APPEND);
-//     return null;
-// }
+function dump2file($vars, $label = '', $return = false)
+{
+    $m_time = microtime();
+    list($t1, $t2) = explode(' ', $m_time);
+    $t1 = $t1*1000000;
+    $t2 = date('Y-m-d H:i:s',$t2);
+    $flag = $t2.':'.$t1;
+    $import_data = print_r($vars,1);
+    $import_data = "================".$flag."================\r\n".$import_data."\r\n";
+    file_put_contents('debug_log.txt', $import_data,FILE_APPEND);
+    return null;
+}
 
 /**
  * @desc ：将调试内容输出到文件中，在异步调用时用到,比如调试矩阵时用
@@ -1765,14 +1765,14 @@ function dump($vars, $label = '', $return = false)
  * @param 参数类型
  * @return 返回值类型
 */
-function dump2file($content,$filename = 'debuglog') {
-    // $content = "\r\n================".time()."=========\r\n".$content;
-    // file_put_contents('jeff_log.txt', $content,FILE_APPEND);
-    $filename = $filename?$filename:'debuglog';
-    $import_data = print_r($content,1);
-    $import_data = "================".date('Y-m-d H:i:s')."---".md5(time().mt_rand(1,1000000))."================\r\n".$import_data."\r\n";
-    file_put_contents(ROOT_DIR.'/debuglog/'.$filename.'.txt', $import_data,FILE_APPEND);
-}
+// function dump2file($content,$filename = 'debuglog') {
+//     // $content = "\r\n================".time()."=========\r\n".$content;
+//     // file_put_contents('jeff_log.txt', $content,FILE_APPEND);
+//     $filename = $filename?$filename:'debuglog';
+//     $import_data = print_r($content,1);
+//     $import_data = "================".date('Y-m-d H:i:s')."---".md5(time().mt_rand(1,1000000))."================\r\n".$import_data."\r\n";
+//     file_put_contents(ROOT_DIR.'/debuglog/'.$filename.'.txt', $import_data,FILE_APPEND);
+// }
 
 /**
  * 显示应用程序执行路径，通常用于调试
